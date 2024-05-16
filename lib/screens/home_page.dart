@@ -1,5 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:weather_app/screens/widgets/background_widget.dart';
+import 'package:weather_app/screens/widgets/text_widget.dart';
+import 'package:weather_app/screens/widgets/weather_data_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,194 +16,73 @@ class HomePage extends StatelessWidget {
       ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            Align(
-              alignment: const AlignmentDirectional(1.5, -0.2),
-              child: Container(
-                height: 350,
-                width: 350,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.deepPurple,
+        child: BackgroundWidget(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TextWidget(
+                title: "some data",
+                size: 20,
+              ),
+              const SizedBox(height: 5),
+              const TextWidget(
+                title: "Good morning",
+                size: 25,
+                fontWeight: FontWeight.bold,
+              ),
+              Image.asset("assets/1.png"),
+              const Center(
+                child: TextWidget(
+                  title: "21°C",
+                  size: 50,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(-1.5, -0.2),
-              child: Container(
-                height: 350,
-                width: 330,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.deepPurple,
+              const Center(
+                child: TextWidget(
+                  title: "Data",
+                  size: 20,
                 ),
               ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(0, -1.2),
-              child: Container(
-                height: 300,
-                width: 300,
-                color: Colors.orange,
+              const Center(
+                child: TextWidget(
+                  title: "Date",
+                  size: 20,
+                ),
               ),
-            ),
-            BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 100,
-                sigmaY: 100,
-              ),
-              child: Container(
-                color: Colors.transparent,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text(
-                    " some data",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                  WeatherDataWidget(
+                    imageUrl: "assets/11.png",
+                    time: "5:03",
+                    title: "Sunrise",
                   ),
-                  const SizedBox(height: 5),
-                  const Text(
-                    "Good morning",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
+                  WeatherDataWidget(
+                    imageUrl: "assets/12.png",
+                    time: "5:03",
+                    title: "Sunrise",
                   ),
-                  Image.asset("assets/1.png"),
-                  const Center(
-                    child: Text(
-                      "21°C",
-                      style: TextStyle(
-                        fontSize: 50,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      "date ",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  const Center(
-                    child: Text(
-                      "date",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          Image.asset(
-                            "assets/11.png",
-                            scale: 8,
-                          ),
-                          const Column(
-                            children: [
-                              Text(
-                                "Sunrise",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                "5:34",
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            "assets/12.png",
-                            scale: 8,
-                          ),
-                          const Column(
-                            children: [
-                              Text(
-                                "Sunrise",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                "5:34",
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          Image.asset(
-                            "assets/13.png",
-                            scale: 8,
-                          ),
-                          const Column(
-                            children: [
-                              Text(
-                                "Sunrise",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                "5:34",
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            "assets/14.png",
-                            scale: 8,
-                          ),
-                          const Column(
-                            children: [
-                              Text(
-                                "Sunrise",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                "5:34",
-                                style: TextStyle(color: Colors.white),
-                              )
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  )
                 ],
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  WeatherDataWidget(
+                    imageUrl: "assets/13.png",
+                    time: "5:03",
+                    title: "Sunrise",
+                  ),
+                  WeatherDataWidget(
+                    imageUrl: "assets/14.png",
+                    time: "5:03",
+                    title: "Sunrise",
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
