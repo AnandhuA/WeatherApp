@@ -9,12 +9,8 @@ part 'weather_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(WeatherInitialstate()) {
     on<FeatchingWeatherEvent>((event, emit) async {
-      print("1");
-
       emit(WeatherLoadaingState());
       try {
-        print("ok-----------");
-
         WeatherFactory weatherFactory = WeatherFactory(
             "577bc43b9c043958bf007ff53405c1c0",
             language: Language.ENGLISH);
@@ -23,12 +19,10 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
           event.position.latitude,
           event.position.longitude,
         );
-        print(weather);
 
         emit(WeatherSuccessState(weather: weather));
       } catch (e) {
         emit(WeatherErrorState());
-        print(e);
       }
     });
   }

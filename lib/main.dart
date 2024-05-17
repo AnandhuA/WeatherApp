@@ -13,27 +13,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _determinePosition(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          print("object");
-          return BlocProvider<WeatherBloc>(
-            create: (context) {
-              final weatherBloc = WeatherBloc();
-              weatherBloc.add(
-                  FeatchingWeatherEvent(position: snapshot.data as Position));
-              return weatherBloc;
-            },
-            child: const MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: HomePage(),
-            ),
-          );
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: FutureBuilder(
+        future: _determinePosition(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+         
+            return BlocProvider<WeatherBloc>(
+              create: (context) => WeatherBloc()
+                ..add(
+                    FeatchingWeatherEvent(position: snapshot.data as Position)),
+              child: const HomePage(),
+            );
+          } else if (snapshot.error == "Location services are disabled.") {
+            return const Scaffold(
+                body: Center(
+              child: Text("Location services are disabled."),
+            ));
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -41,13 +45,11 @@ class MyApp extends StatelessWidget {
 Future<Position> _determinePosition() async {
   bool serviceEnabled;
   LocationPermission permission;
+  debugPrint("Start");
 
-  // Test if location services are enabled.
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    // Location services are not enabled don't continue
-    // accessing the position and request users of the
-    // App to enable the location services.
+    debugPrint("Location services are disabled.................");
     return Future.error('Location services are disabled.');
   }
 
@@ -55,22 +57,18 @@ Future<Position> _determinePosition() async {
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
-      // Permissions are denied, next time you could try
-      // requesting permissions again (this is also where
-      // Android's shouldShowRequestPermissionRationale
-      // returned true. According to Android guidelines
-      // your App should show an explanatory UI now.
+      debugPrint("Location permissions are denied");
       return Future.error('Location permissions are denied');
     }
   }
 
   if (permission == LocationPermission.deniedForever) {
-    // Permissions are denied forever, handle appropriately.
+    debugPrint(
+        "Location permissions are permanently denied, we cannot request permissions.");
     return Future.error(
         'Location permissions are permanently denied, we cannot request permissions.');
   }
 
-  // When we reach here, permissions are granted and we can
-  // continue accessing the position of the device.
+  debugPrint("ok");
   return await Geolocator.getCurrentPosition();
 }
