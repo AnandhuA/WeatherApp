@@ -10,78 +10,79 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: BackgroundWidget(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const TextWidget(
-                title: "some data",
-                size: 20,
-              ),
-              const SizedBox(height: 5),
-              const TextWidget(
-                title: "Good morning",
-                size: 25,
-                fontWeight: FontWeight.bold,
-              ),
-              Image.asset("assets/1.png"),
-              const Center(
-                child: TextWidget(
-                  title: "21°C",
-                  size: 50,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const TextWidget(
+                  title: "some data",
+                  size: 20,
+                ),
+                const SizedBox(height: 5),
+                const TextWidget(
+                  title: "Good morning",
+                  size: 25,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-              const Center(
-                child: TextWidget(
-                  title: "Data",
-                  size: 20,
+                Image.asset("assets/1.png"),
+                const Center(
+                  child: TextWidget(
+                    title: "21°C",
+                    size: 50,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const Center(
-                child: TextWidget(
-                  title: "Date",
-                  size: 20,
+                const Center(
+                  child: TextWidget(
+                    title: "Data",
+                    size: 20,
+                  ),
                 ),
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  WeatherDataWidget(
-                    imageUrl: "assets/11.png",
-                    time: "5:03",
-                    title: "Sunrise",
+                const Center(
+                  child: TextWidget(
+                    title: "Date",
+                    size: 20,
                   ),
-                  WeatherDataWidget(
-                    imageUrl: "assets/12.png",
-                    time: "5:03",
-                    title: "Sunrise",
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  WeatherDataWidget(
-                    imageUrl: "assets/13.png",
-                    time: "5:03",
-                    title: "Sunrise",
-                  ),
-                  WeatherDataWidget(
-                    imageUrl: "assets/14.png",
-                    time: "5:03",
-                    title: "Sunrise",
-                  ),
-                ],
-              )
-            ],
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    WeatherDataWidget(
+                      imageUrl: "assets/11.png",
+                      time: "5:03",
+                      title: "Sunrise",
+                    ),
+                    WeatherDataWidget(
+                      imageUrl: "assets/12.png",
+                      time: "5:03",
+                      title: "Sunrise",
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    WeatherDataWidget(
+                      imageUrl: "assets/13.png",
+                      time: "5:03",
+                      title: "Sunrise",
+                    ),
+                    WeatherDataWidget(
+                      imageUrl: "assets/14.png",
+                      time: "5:03",
+                      title: "Sunrise",
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
