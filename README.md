@@ -1,6 +1,7 @@
 # weather_app
 
 A new Flutter project.
+<img src="https://github.com/AnandhuA/WeatherApp/assets/72302650/efe39ddc-cd71-43fb-90ab-97fd9d8eed9f" alt="Screenshot_20240519-170943-portrait" width="200" height="400">
 
 ## Getting Started
 
