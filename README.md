@@ -60,8 +60,8 @@ Special thanks to the creators of the packages used in this project:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/music-app.git
-   cd music-app
+   git clone https://github.com/AnandhuA/WeatherApp.git
+   cd WeatherApp
 
 2. Install dependencies:
    ```bash
